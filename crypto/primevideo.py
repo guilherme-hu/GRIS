@@ -5,7 +5,7 @@ def sha1(mensagem):
   m.update(mensagem.encode('utf-8'))
   return m.hexdigest()
 
-# módulo n
+# módulo n (equvalente ao |E| descrito nas anotações da GET)
 n = 656563738156183614196284144218755562218717754449979872699851236361364842254951562533589572185811735734269627798779142529399297211938766368323781389974849197211221357383295846145542699614912769848476126126824744284474444862644897675458539907
 
 # Assinatura Digital 1 (Perceba que r é igual para as duas assinaturas)
@@ -21,9 +21,9 @@ mensagem2 = "What down at the name of Sanders. (What down at the forest all by h
 z1,z2 = int(sha1(mensagem1), 16), int(sha1(mensagem2), 16)
 # Desafio Começa aqui :
 
-# k =
+k = ((z1 - z2) * pow(s1 - s2, -1, n)) % n
 
-# dA =
+dA = ((s1 * k  - z1) * pow(r, -1, n)) % n
 
 # Desafio acaba aqui! =)
 print(long_to_bytes(dA))
